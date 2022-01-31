@@ -1,0 +1,52 @@
+<%= form_with do |f| %>
+<div class="control-group">
+    <%= f.label "Status" %>
+    <div class="controls">
+      <%#<%= f.select(:status_type, options_for_select([['Youtube','Youtube'],['Twitter','Twitter'],['Instagram','Instagram']])) %> 
+        <%= link_to "Youtube", onclick: @a=0 %></td>
+        <%= link_to "Twitter", onclick: @a=1 %></td>
+        <%= link_to "Instagram",onclick: @a=2 %></td>
+        <% if params[:onclick].to_i == 1%><br>
+            <%= button_to "view all Twitter posts", twitters_url %><br>
+            <%= "please enter the Twitter url" %>
+            <%= form_with url: new_twitter_path,method: :get do |form| %>
+            <%= form.text_field :url %>
+            <div class="form-group">
+            <%= form.submit "SCRAPE", class: "btn btn-primary",onclick: @a=3 %>
+            <%= puts params[:onclick] %>
+      </div>
+      <% end %>
+        <%end%>
+    <br>
+        <% if params[:onclick].to_i == 0%>
+        <%= button_to "view all Youtube posts",youtubes_action_path, method: :post %><br>        
+        <%= "please enter the Youtube url" %>
+        <%= form_with url: new_youtube_path,method: :get do |form| %>
+        <%= form.text_field :url %>
+        <div class="form-group">
+        <%= form.submit "SCRAPE", class: "btn btn-primary",onclick: @a=3 %>
+        <%= puts params[:onclick] %>
+      </div>
+      <% end %>
+        <%end%> 
+    <br>
+    <% if params[:onclick].to_i == 2%>
+    <%= button_to "view all Instagram posts", instagrams_url, :method => "get" %><br>
+    <%= "please enter the Instagram url" %>
+    <%= form_with url: new_instagram_path,method: :get do |form| %>
+        <%= form.text_field :url %>
+        <div class="form-group">
+        <%= form.submit "SCRAPE", class: "btn btn-primary",onclick: @a=3 %>
+        <%= puts params[:onclick] %>
+      </div>
+      <% end %>
+    <%end%>
+    <br>
+
+
+    </div>
+</div>
+<%# <%= f.submit %>
+<% end %>
+
+

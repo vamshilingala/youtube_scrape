@@ -1,0 +1,19 @@
+<h1>Youtube content listing page</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+        </tr>
+</thead>
+<tbody>
+    <% @youtubecontents.each do |yc| %>
+
+    <tr>
+        <td>
+            <%= yc.title %>
+        </td>
+    </tr>
+    <% end %>
+</tbody>
+
+</table>

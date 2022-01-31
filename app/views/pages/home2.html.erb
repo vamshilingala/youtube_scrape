@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.a {
+  display: contents;
+  border: 1px solid red;
+  background-color: lightgrey;
+  padding: 10px;
+  width: 200px;
+}
+.b {
+  border: 1px solid blue;
+  background-color: lightblue;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+    <div class="a">
+        <div class="b">
+        
+        ThumbNail: <%= image_tag @content.url %> <br>
+      
+        Title:  <%= @content.title %><br>
+        
+    <%#<%= @content.url %>
+    Likes: <%= @metric.likes %><br>
+    
+    Views:  <%= @metric.views %><br>
+    Channel Name:   <%= @metric.channel %>
+        </div> 
+        </div>
+    </body>
+</html>

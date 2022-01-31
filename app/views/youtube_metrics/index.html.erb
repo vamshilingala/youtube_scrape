@@ -1,0 +1,8 @@
+<h1>Youtube metrics listing page</h1>
+<% if @youtubemetrics.present? %>
+   <% @youtubemetrics.each do |ym| %>
+      <%= @ym.likes %>
+      <%= @ym.views %>
+
+   <% end %>
+<% end %>
