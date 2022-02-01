@@ -1,25 +1,34 @@
 <%= form_with do |f| %>
 <div class="control-group">
-    <%= f.label "Status" %>
+    <%= f.label "SCRAPER" %>
     <div class="controls">
       <%#<%= f.select(:status_type, options_for_select([['Youtube','Youtube'],['Twitter','Twitter'],['Instagram','Instagram']])) %> 
         <%= link_to "Youtube", onclick: @a=0 %></td>
         <%= link_to "Twitter", onclick: @a=1 %></td>
         <%= link_to "Instagram",onclick: @a=2 %></td>
         <% if params[:onclick].to_i == 1%><br>
-            <%= button_to "view all Twitter posts", twitters_url %><br>
+        <% @content=nil %>
+        <% @youtubecontents=nil %>         
+            <%= button_to "view all Twitter posts", twitters_url, method: :get %><br>
             <%= "please enter the Twitter url" %>
             <%= form_with url: new_twitter_path,method: :get do |form| %>
             <%= form.text_field :url %>
             <div class="form-group">
             <%= form.submit "SCRAPE", class: "btn btn-primary",onclick: @a=3 %>
+
             <%= puts params[:onclick] %>
       </div>
+    
+      
       <% end %>
         <%end%>
     <br>
+
+
         <% if params[:onclick].to_i == 0%>
-        <%= button_to "view all Youtube posts",youtubes_action_path, method: :post %><br>        
+        <%= form_with url: youtubes_path, method: :get do |f| %>
+        <% end %>
+        <%= button_to "view all Youtube posts",youtubes_path, method: :get %><br>        
         <%= "please enter the Youtube url" %>
         <%= form_with url: new_youtube_path,method: :get do |form| %>
         <%= form.text_field :url %>
@@ -27,9 +36,18 @@
         <%= form.submit "SCRAPE", class: "btn btn-primary",onclick: @a=3 %>
         <%= puts params[:onclick] %>
       </div>
+       <% if @youtubecontents %>
+    <%= render 'list' %>
+    <% end %>
       <% end %>
         <%end%> 
     <br>
+    <% if @content %>
+    <%= render 'form'%>
+    <% end %>
+   
+
+
     <% if params[:onclick].to_i == 2%>
     <%= button_to "view all Instagram posts", instagrams_url, :method => "get" %><br>
     <%= "please enter the Instagram url" %>

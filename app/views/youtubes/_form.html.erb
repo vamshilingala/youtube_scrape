@@ -1,17 +1,31 @@
-<%= form_with(model: youtube) do |form| %>
-  <% if youtube.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(youtube.errors.count, "error") %> prohibited this youtube from being saved:</h2>
-
-      <ul>
-        <% youtube.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.a {
+  display: contents;
+  border: 1px solid red;
+  background-color: lightgrey;
+  padding: 10px;
+  width: 200px;
+}
+.b {
+  border: 1px solid blue;
+  background-color: lightblue;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+    <div class="a">
+        <div class="b">
+        ThumbNail: <%= image_tag @content.url, width: "100", height: "100"%> <br>   
+        Title:  <%= @content.title %><br>  
+       <%#<%= @content.url %>
+        Likes: <%= @metric.likes %><br>
+        Views:  <%= @metric.views %><br>
+        Channel Name: <%= @metric.channel %>
+        </div> 
+        </div>
+    </body>
+</html>

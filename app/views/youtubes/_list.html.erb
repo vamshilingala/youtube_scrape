@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Youtubes</h1>
+<%# <%=p @youtubecontents.title %>
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @youtubecontents.each do |yc| %>
+    <tr>
+      <% if yc.url %>
+      <td> <%= image_tag yc.url, width: "100", height: "100"%></td>
+     <%end%>
+     <td><%= yc.title %></td>
+     <td><%= yc.youtube_metric.likes %></td>
+     <td><%=yc.youtube_metric.views %></td>
+     <td><%=yc.youtube_metric.channel %></td>
+    
+    </tr>
+  
+  <% end %>
+    
+  </tbody>
+</table>
+ <%= will_paginate @youtubecontents %>
+
+<br>
+
+<%= link_to 'New Youtube', new_youtube_path %>

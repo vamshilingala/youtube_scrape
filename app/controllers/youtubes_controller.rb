@@ -1,12 +1,12 @@
-#require_relative 'servicers:\youtube_scrapper_service.rb'
-#require_relative 'app/servicers/youtube_scrapper_service.rb'
-#require_relative 'app/controllers/youtube_contents_controller.rb'
 class YoutubesController < ApplicationController
   before_action :set_youtube, only: %i[ show edit update destroy ]
   
   # GET /youtubes or /youtubes.json
   def index
-    @youtubes = Youtube.all
+    @youtubecontents=YoutubeContent.all.paginate(:page => params[:page], :per_page =>5)
+    if @youtubecontents.present? 
+     render template: "pages/home"
+    end
   end
 
   # GET /youtubes/1 or /youtubes/1.json
@@ -35,7 +35,7 @@ class YoutubesController < ApplicationController
     puts @content
     @metric=YoutubeMetric.create(likes:data[:likes],views:data[:views],channel: data[:channel],youtube_content_id:@content.id)
       if @content.present? and @metric.present?
-          render template: "pages/home2", locals: {content:@content, metric: @metric}
+          render template: "pages/home", locals: {content:@content, metric: @metric}
     end
   end
 
@@ -79,5 +79,5 @@ class YoutubesController < ApplicationController
     
 end
 #https://www.youtube.com/watch?v=bMknfKXIFA8
-yc=YoutubesController.new()
-puts yc.class
+#yc=YoutubesController.new()
+#puts yc.class
